@@ -1,0 +1,53 @@
+
+#include "person.h"
+#include <sstream>
+
+
+//==============================================================================
+// class Person
+//==============================================================================
+
+// now we don't have a definition for this class
+
+//double Person::calcSalary() const
+//{
+//    return 1000;
+//}
+
+//==============================================================================
+// class Student
+//==============================================================================
+
+std::string Student::makeNameGroup() const
+{
+    std::stringstream ss;
+    ss << "Name: " << _name << ", Group ID: " << _groupId;
+
+    return ss.str();
+}
+
+void Student::addGrade(int grade)
+{
+    _grades.push_back(grade);
+}
+
+double Student::calcSalary() const
+{
+    for(int curMark : _grades)
+        if(curMark < 6)
+            return 0;
+
+    // some complex logic which calculates the individual scholarship
+    //return Person::calcSalary() + _grades.size() * 500;
+    return _grades.size() * 500;
+}
+
+//==============================================================================
+// class Professor
+//==============================================================================
+
+double Professor::calcSalary() const
+{
+    // can't get Person's base salary anymore
+    return /*Person::calcSalary() +*/ _qualPeriod * 1000;
+}
